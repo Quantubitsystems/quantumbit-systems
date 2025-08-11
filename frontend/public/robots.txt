@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://quantumsystems.co.ke/sitemap.xml
+
+# Disallow admin routes
+Disallow: /quantum-admin-ak2024
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /products
+Allow: /portfolio
+Allow: /contact
+Allow: /faq

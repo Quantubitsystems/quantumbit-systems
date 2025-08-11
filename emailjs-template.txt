@@ -1,0 +1,30 @@
+EmailJS Template Setup:
+
+1. Go to "Email Templates" in EmailJS dashboard
+2. Click "Create New Template"
+3. Use this template:
+
+---
+Subject: New Contact Form Submission - {{service}}
+
+Hello {{to_name}},
+
+You have received a new contact form submission:
+
+Name: {{from_name}}
+Email: {{from_email}}
+Phone: {{phone}}
+Service Interest: {{service}}
+
+Message:
+{{message}}
+
+---
+Reply to: {{from_email}}
+
+Best regards,
+Quantum Systems Website
+---
+
+4. Save the template and note the Template ID
+5. Test the template with sample data
