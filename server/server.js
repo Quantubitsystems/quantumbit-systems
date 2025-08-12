@@ -9,6 +9,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ message: 'Quantum Backend API is running!' });
+});
+
 app.use(cors({ 
   origin: ['http://localhost:8080', 'http://172.32.0.250:8080'],
   credentials: true 
