@@ -19,7 +19,8 @@ app.use(cors({
     'http://localhost:8080', 
     'http://172.32.0.250:8080',
     'https://quantumbitsystems.com',
-    'https://www.quantumbitsystems.com'
+    'https://www.quantumbitsystems.com',
+    'https://quantumbitsystems.pages.dev'
   ],
   credentials: true 
 }));
