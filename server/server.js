@@ -15,7 +15,12 @@ app.get('/', (req, res) => {
 });
 
 app.use(cors({ 
-  origin: ['http://localhost:8080', 'http://172.32.0.250:8080'],
+  origin: [
+    'http://localhost:8080', 
+    'http://172.32.0.250:8080',
+    'https://quantumbitsystems.com',
+    'https://www.quantumbitsystems.com'
+  ],
   credentials: true 
 }));
 app.use(express.json());
