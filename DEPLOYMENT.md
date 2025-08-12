@@ -1,24 +1,24 @@
-# Railway Deployment Guide
+# Render + Cloudflare Deployment Guide
 
-## Backend Deployment on Railway
+## Backend Deployment on Render
 
-1. **Create Railway Account**: Go to [railway.app](https://railway.app)
+1. **Create Render Account**: Go to [render.com](https://render.com)
 
 2. **Deploy Backend**:
    - Connect your GitHub repo
    - Select `server` folder as root directory
-   - Railway will auto-detect Node.js
+   - Render will auto-detect Node.js
 
-3. **Environment Variables** (Add in Railway dashboard):
+3. **Environment Variables** (Add in Render dashboard):
    ```
    NODE_ENV=production
-   PORT=3001
-   ADMIN_TOKEN=your-secure-admin-token
+   PORT=10000
+   ADMIN_TOKEN=quantum2024admin
    ```
 
-4. **Database**: Railway will automatically create SQLite database
+4. **Database**: Render will automatically create SQLite database
 
-5. **Get Backend URL**: Copy your Railway app URL (e.g., `https://your-app.railway.app`)
+5. **Get Backend URL**: Copy your Render app URL (e.g., `https://quantumbit-backend.onrender.com`)
 
 ## Frontend Deployment on Cloudflare Pages
 
@@ -26,8 +26,8 @@
    ```typescript
    export const config = {
      api: {
-       baseUrl: 'https://your-railway-app.railway.app', // Your Railway URL
-       adminToken: 'your-secure-admin-token'
+       baseUrl: 'https://quantumbit-backend.onrender.com', // Your Render URL
+       adminToken: 'quantum2024admin'
      }
    };
    ```
@@ -59,18 +59,18 @@ Update `server/server.js` to allow your Cloudflare domain:
 app.use(cors({
   origin: [
     'http://localhost:8080',
-    'https://your-domain.pages.dev',
-    'https://your-custom-domain.com'
+    'https://quantumbitsystems.com',
+    'https://www.quantumbitsystems.com'
   ]
 }));
 ```
 
 ## Final Steps
 
-1. **Test Backend**: Visit your Railway URL
-2. **Test Frontend**: Visit your Cloudflare Pages URL
-3. **Admin Access**: `https://your-domain.com/quantum-admin-ak2024`
+1. **Test Backend**: Visit https://quantumbit-backend.onrender.com
+2. **Test Frontend**: Visit https://quantumbitsystems.com
+3. **Admin Access**: https://quantumbitsystems.com/quantum-admin-ak2024
 
-Your website will be live with:
+Your website is live with:
 - ⚡ **Fast frontend** on Cloudflare's global CDN
-- 🚄 **Reliable backend** on Railway with auto-scaling
+- 🚄 **Reliable backend** on Render (free tier)

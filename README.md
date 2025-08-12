@@ -17,7 +17,8 @@ A fully functional business website for Quantum Systems and Services, offering w
 
 ## 🚀 Live Demo
 
-**URL**: https://lovable.dev/projects/2e97b6c4-76a1-4232-8b1b-0a456ff8fbcc
+**URL**: https://quantumbitsystems.com
+**Admin Panel**: https://quantumbitsystems.com/quantum-admin-ak2024
 
 ## ⚡ Quick Setup
 
@@ -38,7 +39,7 @@ A fully functional business website for Quantum Systems and Services, offering w
 3. **Start the application:**
    ```bash
    # Terminal 1 - Backend
-   npm run start:backend
+   cd server && npm run dev
    
    # Terminal 2 - Frontend  
    cd frontend && npm run dev
