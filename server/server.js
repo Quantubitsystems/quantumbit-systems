@@ -21,7 +21,8 @@ app.use(cors({
     'https://quantumbitsystems.com',
     'https://www.quantumbitsystems.com',
     'https://quantumbitsystems.pages.dev',
-    'https://quantumbit-systems.pages.dev'
+    'https://quantumbit-systems.pages.dev',
+    /https:\/\/.*\.quantumbit-systems\.pages\.dev$/
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
