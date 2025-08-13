@@ -1,7 +1,7 @@
 export const config = {
   api: {
-    baseUrl: import.meta.env.VITE_API_URL || 'https://quantumbit-backend.onrender.com',
-    adminToken: import.meta.env.VITE_ADMIN_TOKEN || 'quantum2024admin'
+    baseUrl: 'https://quantumbit-backend.onrender.com',
+    adminToken: 'quantum2024admin'
   },
   analytics: {
     trackingId: import.meta.env.VITE_GA_TRACKING_ID
