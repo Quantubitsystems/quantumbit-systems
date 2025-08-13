@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Calendar, Users } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
 import { LazyImage } from "@/components/LazyImage";
+import { api } from "@/lib/api";
 
 
 const Portfolio = () => {
@@ -21,8 +22,8 @@ const Portfolio = () => {
   const fetchData = async () => {
     try {
       const [projectsData, testimonialsData] = await Promise.all([
-        fetch('http://localhost:3001/api/projects').then(r => r.json()),
-        fetch('http://localhost:3001/api/testimonials').then(r => r.json())
+        api.getProjects(),
+        api.getTestimonials()
       ]);
       setProjects(projectsData);
       setTestimonials(testimonialsData);
