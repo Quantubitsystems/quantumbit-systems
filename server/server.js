@@ -20,7 +20,8 @@ app.use(cors({
     'http://172.32.0.250:8080',
     'https://quantumbitsystems.com',
     'https://www.quantumbitsystems.com',
-    'https://quantumbitsystems.pages.dev'
+    'https://quantumbitsystems.pages.dev',
+    'https://YOUR_ACTUAL_CLOUDFLARE_URL_HERE'
   ],
   credentials: true 
 }));

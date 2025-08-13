@@ -1,6 +1,6 @@
 export const config = {
   api: {
-    baseUrl: 'https://quantumbit-backend.onrender.com',
+    baseUrl: import.meta.env.VITE_API_URL || 'https://YOUR_RENDER_URL_HERE',
     adminToken: import.meta.env.VITE_ADMIN_TOKEN || 'quantum2024admin'
   },
   analytics: {
