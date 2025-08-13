@@ -60,7 +60,7 @@ const Admin = () => {
   const loadData = async () => {
     try {
       const headers = { 'Authorization': `Bearer ${config.api.adminToken}` };
-      const [productsData, ordersData, testimonialsData, projectsData, subscribersData, blogData] = await Promise.all([
+      const [productsData, ordersData, testimonialsData, projectsData, subscribersData, blogData, settingsData] = await Promise.all([
         api.getProducts(),
         fetch(`${config.api.baseUrl}/api/orders`, { headers }).then(r => r.json()),
         fetch(`${config.api.baseUrl}/api/admin/testimonials`, { headers }).then(r => r.json()),
@@ -75,7 +75,6 @@ const Admin = () => {
       setProjects(projectsData);
       setSubscribers(subscribersData);
       setBlogPosts(blogData);
-      const settingsData = await Promise.resolve(arguments[0][5]);
       setSocialLinks(settingsData || socialLinks);
     } catch (error) {
       console.error('Failed to load data:', error);
