@@ -64,12 +64,12 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-orbitron font-black mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-orbitron font-black mb-6 leading-tight">
             <span className="bg-gradient-quantum bg-clip-text text-transparent">
               QUANTUMBIT
             </span>
             <br />
-            <span className="text-foreground whitespace-nowrap">
+            <span className="text-foreground">
               SYSTEMS & SERVICES
             </span>
           </h1>
