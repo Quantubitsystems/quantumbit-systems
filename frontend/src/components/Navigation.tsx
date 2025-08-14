@@ -24,35 +24,19 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const navRect = navRef.current?.getBoundingClientRect();
-    if (navRect) {
+    const target = e.currentTarget;
+    const navContainer = navRef.current;
+    if (navContainer) {
+      const targetRect = target.getBoundingClientRect();
+      const containerRect = navContainer.getBoundingClientRect();
+      
       setHoverIndicator({
-        left: rect.left - navRect.left,
-        width: rect.width,
+        left: targetRect.left - containerRect.left,
+        width: targetRect.width,
         opacity: 1
       });
     }
   };
-
-  const updateHoverPosition = () => {
-    if (hoverIndicator.opacity > 0) {
-      const hoveredElement = document.querySelector('.nav-item:hover');
-      if (hoveredElement && navRef.current) {
-        const rect = hoveredElement.getBoundingClientRect();
-        const navRect = navRef.current.getBoundingClientRect();
-        setHoverIndicator(prev => ({
-          ...prev,
-          left: rect.left - navRect.left
-        }));
-      }
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', updateHoverPosition);
-    return () => window.removeEventListener('scroll', updateHoverPosition);
-  }, [hoverIndicator.opacity]);
 
   const handleMouseLeave = () => {
     setHoverIndicator(prev => ({ ...prev, opacity: 0 }));
