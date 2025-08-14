@@ -35,6 +35,25 @@ const Navigation = () => {
     }
   };
 
+  const updateHoverPosition = () => {
+    if (hoverIndicator.opacity > 0) {
+      const hoveredElement = document.querySelector('.nav-item:hover');
+      if (hoveredElement && navRef.current) {
+        const rect = hoveredElement.getBoundingClientRect();
+        const navRect = navRef.current.getBoundingClientRect();
+        setHoverIndicator(prev => ({
+          ...prev,
+          left: rect.left - navRect.left
+        }));
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', updateHoverPosition);
+    return () => window.removeEventListener('scroll', updateHoverPosition);
+  }, [hoverIndicator.opacity]);
+
   const handleMouseLeave = () => {
     setHoverIndicator(prev => ({ ...prev, opacity: 0 }));
   };
@@ -82,7 +101,7 @@ const Navigation = () => {
                 key={item.path}
                 to={item.path}
                 onMouseEnter={handleMouseEnter}
-                className={`relative font-exo font-medium transition-colors duration-300 ${
+                className={`nav-item relative font-exo font-medium transition-colors duration-300 ${
                   isActive(item.path)
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
