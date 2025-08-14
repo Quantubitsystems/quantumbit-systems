@@ -16,19 +16,22 @@ const Navigation = () => {
     if (location.pathname !== '/') return;
     
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
+      const sections = [
+        { id: 'hero', element: document.querySelector('section') },
+        { id: 'about', element: document.getElementById('about') },
+        { id: 'services', element: document.getElementById('services') },
+        { id: 'products', element: document.getElementById('products') },
+        { id: 'contact', element: document.getElementById('contact') }
+      ];
       
-      if (scrollY < windowHeight * 0.5) {
-        setActiveSection('hero');
-      } else if (scrollY < windowHeight * 1.5) {
-        setActiveSection('about');
-      } else if (scrollY < windowHeight * 2.5) {
-        setActiveSection('services');
-      } else if (scrollY < windowHeight * 3.5) {
-        setActiveSection('products');
-      } else {
-        setActiveSection('contact');
+      const scrollY = window.scrollY + 100; // Offset for navbar
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.element && section.element.offsetTop <= scrollY) {
+          setActiveSection(section.id);
+          break;
+        }
       }
     };
 
