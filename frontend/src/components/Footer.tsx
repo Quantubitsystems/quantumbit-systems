@@ -60,7 +60,7 @@ const Footer = () => {
                       <div className="w-8 h-8 bg-gradient-quantum rounded-lg flex items-center justify-center">
                         <Globe className="w-4 h-4 text-white" />
                       </div>
-                      <span className="font-exo text-white">www.quantumsystems.com</span>
+                      <span className="font-exo text-white">www.quantumbitsystems.com</span>
                     </div>
                     <div className="flex items-center space-x-3">
                       <div className="w-8 h-8 bg-gradient-quantum rounded-lg flex items-center justify-center">
