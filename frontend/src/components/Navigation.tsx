@@ -4,14 +4,38 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import MobileMenu from "@/components/MobileMenu";
 import quantumLogo from "@/assets/quantum-logo.png";
-import { useScrollNavigation } from "@/hooks/useScrollNavigation";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoverIndicator, setHoverIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+  const [activeSection, setActiveSection] = useState('hero');
   const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const activeSection = useScrollNavigation();
+
+  useEffect(() => {
+    if (location.pathname !== '/') return;
+    
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      if (scrollY < windowHeight * 0.5) {
+        setActiveSection('hero');
+      } else if (scrollY < windowHeight * 1.5) {
+        setActiveSection('about');
+      } else if (scrollY < windowHeight * 2.5) {
+        setActiveSection('services');
+      } else if (scrollY < windowHeight * 3.5) {
+        setActiveSection('products');
+      } else {
+        setActiveSection('contact');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
 
   const navItems = [
     { path: "/", label: "Home" },
