@@ -17,16 +17,16 @@ const Navigation = () => {
     
     const handleScroll = () => {
       const sections = [
-        { id: 'hero', element: document.querySelector('section') },
-        { id: 'about', element: document.getElementById('about') || document.querySelector('[data-section="about"]') },
-        { id: 'services', element: document.getElementById('services') || document.querySelector('[data-section="services"]') },
-        { id: 'products', element: document.getElementById('products') || document.querySelector('[data-section="products"]') },
-        { id: 'portfolio', element: document.getElementById('portfolio') || document.querySelector('[data-section="portfolio"]') },
-        { id: 'blog', element: document.getElementById('blog') || document.querySelector('[data-section="blog"]') },
-        { id: 'contact', element: document.getElementById('contact') || document.querySelector('[data-section="contact"]') }
+        { id: 'hero', element: document.getElementById('hero') },
+        { id: 'about', element: document.getElementById('about') },
+        { id: 'services', element: document.getElementById('services') },
+        { id: 'products', element: document.getElementById('products') },
+        { id: 'portfolio', element: document.getElementById('portfolio') },
+        { id: 'blog', element: document.getElementById('blog') },
+        { id: 'contact', element: document.getElementById('contact') }
       ].filter(section => section.element);
       
-      const scrollY = window.scrollY + 100; // Offset for navbar
+      const scrollY = window.scrollY + 200; // Offset for navbar
       
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
