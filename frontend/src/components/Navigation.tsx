@@ -21,6 +21,8 @@ const Navigation = () => {
         { id: 'about', element: document.getElementById('about') },
         { id: 'services', element: document.getElementById('services') },
         { id: 'products', element: document.getElementById('products') },
+        { id: 'portfolio', element: document.getElementById('portfolio') },
+        { id: 'blog', element: document.getElementById('blog') },
         { id: 'contact', element: document.getElementById('contact') }
       ];
       
