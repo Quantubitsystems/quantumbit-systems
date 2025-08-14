@@ -27,12 +27,13 @@ const Navigation = () => {
     const target = e.currentTarget;
     const navContainer = navRef.current;
     if (navContainer) {
-      const targetRect = target.getBoundingClientRect();
-      const containerRect = navContainer.getBoundingClientRect();
+      // Use offsetLeft for consistent positioning regardless of scroll
+      const targetOffsetLeft = target.offsetLeft;
+      const containerOffsetLeft = navContainer.offsetLeft;
       
       setHoverIndicator({
-        left: targetRect.left - containerRect.left,
-        width: targetRect.width,
+        left: targetOffsetLeft - containerOffsetLeft,
+        width: target.offsetWidth,
         opacity: 1
       });
     }
@@ -96,7 +97,7 @@ const Navigation = () => {
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-quantum rounded-full" />
                 )}
               </Link>
-            ))
+            ))}
             <Button variant="quantum" size="sm" asChild>
               <Link to="/services">
                 Get Started
