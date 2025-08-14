@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -7,6 +7,8 @@ import quantumLogo from "@/assets/quantum-logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hoverIndicator, setHoverIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+  const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
   const navItems = [
@@ -20,6 +22,22 @@ const Navigation = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const navRect = navRef.current?.getBoundingClientRect();
+    if (navRect) {
+      setHoverIndicator({
+        left: rect.left - navRect.left,
+        width: rect.width,
+        opacity: 1
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoverIndicator(prev => ({ ...prev, opacity: 0 }));
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-quantum-border">
@@ -44,11 +62,26 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div 
+            ref={navRef}
+            className="hidden md:flex items-center space-x-8 relative"
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* Hover Indicator */}
+            <div 
+              className="absolute -bottom-1 h-0.5 bg-gradient-quantum rounded-full transition-all duration-300 ease-out"
+              style={{
+                left: hoverIndicator.left,
+                width: hoverIndicator.width,
+                opacity: hoverIndicator.opacity
+              }}
+            />
+            
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
+                onMouseEnter={handleMouseEnter}
                 className={`relative font-exo font-medium transition-colors duration-300 ${
                   isActive(item.path)
                     ? "text-primary"
@@ -60,7 +93,7 @@ const Navigation = () => {
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-quantum rounded-full" />
                 )}
               </Link>
-            ))}
+            ))
             <Button variant="quantum" size="sm" asChild>
               <Link to="/services">
                 Get Started
