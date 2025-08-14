@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import MobileMenu from "@/components/MobileMenu";
 import quantumLogo from "@/assets/quantum-logo.png";
+import { useScrollNavigation } from "@/hooks/useScrollNavigation";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hoverIndicator, setHoverIndicator] = useState({ left: 0, width: 0, opacity: 0 });
   const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const activeSection = useScrollNavigation();
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -21,7 +23,22 @@ const Navigation = () => {
     { path: "/contact", label: "Contact" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    // On homepage, use scroll-based section detection
+    if (location.pathname === '/') {
+      const sectionMap: { [key: string]: string } = {
+        '/': 'hero',
+        '/about': 'about',
+        '/services': 'services',
+        '/products': 'products',
+        '/portfolio': 'portfolio',
+        '/contact': 'contact'
+      };
+      return activeSection === sectionMap[path];
+    }
+    // On other pages, use normal path matching
+    return location.pathname === path;
+  };
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const target = e.currentTarget;
